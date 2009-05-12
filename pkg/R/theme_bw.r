@@ -1,4 +1,4 @@
-theme_bw <- function(base_size = 12) {
+theme_bw2 <- function(base_size = 12) {
   structure(list(
     axis.line =         theme_blank(),
     axis.text.x =       theme_text(size = base_size * 0.8 , lineheight = 0.9, vjust = 1),
@@ -68,7 +68,7 @@ theme_minimal <- function(base_size = 12) {
   ), class = "options")
 }
 
-theme_gray <- function(base_size = 12) {
+theme_gray2 <- function(base_size = 12) {
   structure(list(
     axis.line =         theme_blank(),
     axis.text.x =       theme_text(size = base_size * 0.8 , lineheight = 0.9, colour = "grey50", vjust = 1),
