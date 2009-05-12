@@ -41,7 +41,7 @@ Produce a theme with white background and black gridlines.
 	c <- a + theme_minimal() + opts(title="theme_minimal")
 	d <- a + theme_bw() + opts(title="theme_bw")
 	e <- a + theme_flashy() + opts(title="theme_flashy")
-	f <- a + theme_dark() + opts(title="theme_dark")
+	f <- a + theme_bb() + opts(title="theme_dark")
 
 	drawAll(a,b,c,d, e, f)
 

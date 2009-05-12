@@ -30,5 +30,5 @@ ScaleAr <- proto(ScaleContinuous, expr={
     p + scale_alpha(to = c(0.4, 0.8))
   }
 })
-
-scale_ar <- ScaleAr$build_accessor()
+# 
+# scale_ar <- ScaleAr$build_accessor()

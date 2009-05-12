@@ -66,6 +66,6 @@ ngonXY <- do.call(rbind, ngonC.list)
   )
 }
 
-
-geom_ngon <- GeomNgon$build_accessor()
+# 
+# geom_ngon <- GeomNgon$build_accessor()
 

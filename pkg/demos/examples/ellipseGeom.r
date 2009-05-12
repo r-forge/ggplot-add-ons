@@ -111,11 +111,6 @@ ngonXY <- do.call(rbind, ngonC.list)
 geom_ngon <- GeomNgon$build_accessor()
 
 
-dsmall <- diamonds[sample(nrow(diamonds), 100), ]
-d <- ggplot(dsmall, aes(carat, price))
-str(dsmall)
-d + geom_ngon(aes(fill = carat, sides=color), colour="orange",ar=1,  size=5, angle=pi/3)
-
 ScaleSides <- proto(ScaleDiscrete, expr={
   doc <- TRUE
   common <- NULL
@@ -144,3 +139,59 @@ ScaleSides <- proto(ScaleDiscrete, expr={
 
 
 scale_sides <- ScaleSides$build_accessor()
+
+
+
+dsmall <- diamonds[sample(nrow(diamonds), 100), ]
+d <- ggplot(dsmall, aes(carat, price))
+str(dsmall)
+library(ggplotpp)
+
+
+d + geom_ngon(aes(fill = carat, sides=color), colour="orange",ar=1,  size=5, angle=pi/3)
+
+d + geom_ngon(aes(fill = carat, angle = x, ar=y, size=depth), sides=50)
+
+
+
+# 
+# 
+# library(spectral)
+# colorStrip <- 
+# function (colors, draw = T) 
+# {
+#     x <- seq(0, 1 - 1/ncol(colors), length = ncol(colors))
+#     y <- rep(0.5, length(colors))
+#     my.grob <- grid.rect(x = unit(x, "npc"), y = unit(y, "npc"), 
+#         width = unit(1/ncol(colors), "npc"), height = unit(1, 
+#             "npc"), just = "left", hjust = NULL, vjust = NULL, 
+#         default.units = "npc", name = NULL, gp = gpar(fill = rgb(colors[1, 
+#             ], colors[2, ], colors[3, ]), col = rgb(colors[1, 
+#             ], colors[2, ], colors[3, ])), draw = draw, vp = NULL)
+#     my.grob
+# }
+# 
+# 
+# colors <- rbind(c(1, 0, 1), c(0, 1, 0), c(0, 0, 0))
+# 
+# pdf("testRGB.pdf")
+# colorStrip(colors)
+# dev.off()
+# 
+# 
+# 
+# PostScriptTrace("testRGB.pdf") 
+# 
+# test <- readLines("testRGB.pdf.xml") 
+# 
+# testRead <- readPicture("testRGB.pdf.xml") 
+# 
+# str(testRead)
+# grid.picture(testRead) 
+# 
+# grep("<rgb.+", test, value=T)
+# 
+
+
+
+

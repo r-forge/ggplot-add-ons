@@ -30,5 +30,5 @@
     p + scale_alpha(to = c(0.4, 0.8))
   }
 })
-
-scale_angle <- ScaleAngle$build_accessor()
+# 
+# scale_angle <- ScaleAngle$build_accessor()
