@@ -14,7 +14,7 @@ GeomNgon <- proto(Geom, {
   default_aes <- function(.) 
 	aes(sides=5, size=1, angle=0, ar=1, colour=NA, fill = "grey50", alpha = 1)
   default_stat <- function(.) StatIdentity
-  guide_geom <- function(.) "polygon"
+   guide_geom <- function(.) "ngon"
   
   # 
     draw_legend <- function(., data, ...) {
@@ -22,12 +22,7 @@ GeomNgon <- proto(Geom, {
     
       with(data, 
         ggname(.$my_name(),
-		ngonGrob(0, 0, 
-			ar=ar, 
-			size=size, 
-			sides=sides,
-			angle = angle , 
-			fill=fill)))
+		polygonGrob())
     }
 
   icon <- function(.) {
@@ -42,7 +37,7 @@ GeomNgon <- proto(Geom, {
   examples <- function() {
 	dsmall <- diamonds[sample(nrow(diamonds), 100), ]
 	d <- ggplot(dsmall, aes(carat, price))
-	d + geom_ngon(aes(fill=carat), sides=4, size=2)
+	d + geom_ngon(aes(fill=carat, size=x), sides=4, size=2)
   }
 })
 
@@ -91,6 +86,9 @@ ngonXY <- do.call(rbind, ngonC.list)
   )
 }
 
-# 
+# now lives in zzz.r# 
 # geom_ngon <- GeomNgon$build_accessor()
-
+# 
+# dsmall <- diamonds[sample(nrow(diamonds), 100), ]
+# d <- ggplot(dsmall, aes(carat, price))
+# d + geom_ngon(aes(fill=carat, sides=color), size=2)
