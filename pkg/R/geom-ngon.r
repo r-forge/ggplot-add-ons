@@ -24,7 +24,7 @@ GeomNgon <- proto(Geom, {
     with(data,
       ggname(.$my_name(),
               ngonGrob(0.5, 0.5,
-                      ar=ar,
+                      ar=1.2*ar,
                       size=size*0.1,
                       sides=sides,
                       angle = angle ,
@@ -45,7 +45,13 @@ GeomNgon <- proto(Geom, {
 dsmall <- diamonds[sample(nrow(diamonds), 100), ]
 str(dsmall)
 d <- ggplot(dsmall, aes(carat, price))
-d + geom_ngon(aes(fill=color, sides=cut, size=))
+d + geom_ngon(aes(fill=color, sides=cut, size=x))
+d + geom_ngon(aes(fill=color, sides=cut, size=x))
+
+d + geom_ngon(aes(fill = carat, sides=color), colour="orange",ar=1,  size=5, angle=pi/3)
+
+d + geom_ngon(aes(colour = carat, angle = x, ar=1.2*y, fill=carat), size=2,  sides=50)
+
   }
 })
 
@@ -53,7 +59,7 @@ d + geom_ngon(aes(fill=color, sides=cut, size=))
 
 ngonGrob <- function(x, y, sides=5, size = rep(1, length(x)), 
 						angle=rep(pi/2, length(x)), ar = rep(1.5, length(x)), 
-						colour = "grey50", fill = "grey90", units.def="native") {
+						colour = "grey50", fill = "grey90", units.def="npc") {
 							
   stopifnot(length(y) == length(x))
   
@@ -76,7 +82,7 @@ if(length(sides) == 1 ) {
 # aspect ratio factor for constant area
 ngonC.list <- 
 llply(seq_along(ngonC), function(ii) 
-		size[ii]* res * ngonC[[ii]] %*% matrix(c(sqrt(ar[ii]), 0, 0, 1/sqrt(ar[ii])), ncol=2) %*%
+		size[ii] * res * ngonC[[ii]] %*% matrix(c(sqrt(ar[ii]), 0, 0, 1/sqrt(ar[ii])), ncol=2) %*%
 		matrix(c(cos(angle[ii]), -sin(angle[ii]), sin(angle[ii]), cos(angle[ii])), nrow = 2)
 		)
 
