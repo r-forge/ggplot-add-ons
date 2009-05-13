@@ -31,7 +31,8 @@ GeomNgon <- proto(Geom, {
                       sides=sides,
                       angle = angle ,
                       fill=fill, units.def="npc"), 
-			segmentsGrob(0.5, 0.5, 0.5*cos(angle), 0.5*sin(angle), gp=gpar(colour="grey", linewidth=1))))))
+			segmentsGrob(0.5, 0.5, 0.5 + cos(angle)/2, 0.5 + sin(angle)/2, 
+				gp=gpar(colour="grey", linewidth=1))))))
   }
 
   icon <- function(.) {
