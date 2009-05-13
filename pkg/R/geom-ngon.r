@@ -24,7 +24,7 @@ GeomNgon <- proto(Geom, {
     with(data,
       ggname(.$my_name(),
               ngonGrob(0.5, 0.5,
-                      ar=1.2*ar,
+                      ar=ar,
                       size=size*0.1,
                       sides=sides,
                       angle = angle ,
