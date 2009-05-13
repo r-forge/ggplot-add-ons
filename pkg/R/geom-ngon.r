@@ -17,13 +17,19 @@ GeomNgon <- proto(Geom, {
    guide_geom <- function(.) "ngon"
   
   # 
-    draw_legend <- function(., data, ...) {
-      data <- aesdefaults(data, .$default_aes(), list(...))
-    
-      with(data, 
-        ggname(.$my_name(),
-		polygonGrob())
-    }
+
+  draw_legend <- function(., data, ...) {
+    data <- aesdefaults(data, .$default_aes(), list(...))
+
+    with(data,
+      ggname(.$my_name(),
+              ngonGrob(0, 0,
+                      ar=ar,
+                      size=size,
+                      sides=sides,
+                      angle = angle ,
+                      fill=fill)))
+  }
 
   icon <- function(.) {
 	ngonGrob(c(1/4, 1/2, 3/4), c(1/4, 1/2, 3/4), 
