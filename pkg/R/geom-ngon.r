@@ -25,7 +25,7 @@ GeomNgon <- proto(Geom, {
       ggname(.$my_name(),
               ngonGrob(0, 0,
                       ar=ar,
-                      size=size,
+                      size=size*0.1,
                       sides=sides,
                       angle = angle ,
                       fill=fill)))
@@ -95,6 +95,6 @@ ngonXY <- do.call(rbind, ngonC.list)
 # now lives in zzz.r# 
 # geom_ngon <- GeomNgon$build_accessor()
 # 
-# dsmall <- diamonds[sample(nrow(diamonds), 100), ]
-# d <- ggplot(dsmall, aes(carat, price))
-# d + geom_ngon(aes(fill=carat, sides=color), size=2)
+dsmall <- diamonds[sample(nrow(diamonds), 100), ]
+d <- ggplot(dsmall, aes(carat, price))
+d + geom_ngon(aes(fill=carat, sides=color), size=2)
