@@ -5,22 +5,47 @@ GeomNgon <- proto(Geom, {
   draw <- function(., data, scales, coordinates, ...) {
     with(coordinates$transform(data, scales),
       ggname(.$my_name(), 
-ngonGrob(x, y, sides, size, angle, ar, col=alpha(colour, alpha), fill = alpha(fill, alpha)))
+	ngonGrob(x, y, sides, size, angle, ar, col=alpha(colour, alpha), fill = alpha(fill, alpha)))
     )
   }
-  
+
+
   required_aes <- c("x", "y")
   default_aes <- function(.) 
 	aes(sides=5, size=1, angle=0, ar=1, colour=NA, fill = "grey50", alpha = 1)
   default_stat <- function(.) StatIdentity
   guide_geom <- function(.) "polygon"
   
+  # 
+    draw_legend <- function(., data, ...) {
+      data <- aesdefaults(data, .$default_aes(), list(...))
+    
+      with(data, 
+        ggname(.$my_name(),
+		ngonGrob(0, 0, 
+			ar=ar, 
+			size=size, 
+			sides=sides,
+			angle = angle , 
+			fill=fill)))
+    }
+
+  icon <- function(.) {
+	ngonGrob(c(1/4, 1/2, 3/4), c(1/4, 1/2, 3/4), 
+		ar=c(1, 1.5, 2), 
+		size=1.2*c(0.1, 0.3, 0.1), 
+		sides=c(5, 6, 50),
+		angle = c(0, pi/4, pi/3) , 
+		fill=c("#E41A1C",  "#377EB8",  "#4DAF4A"))
+  }
+
   examples <- function() {
-	dsmall <- sample.df(diamonds)
+	dsmall <- diamonds[sample(nrow(diamonds), 100), ]
 	d <- ggplot(dsmall, aes(carat, price))
 	d + geom_ngon(aes(fill=carat), sides=4, size=2)
   }
 })
+
 
 
 ngonGrob <- function(x, y, sides=5, size = rep(1, length(x)), 
@@ -61,7 +86,7 @@ ngonXY <- do.call(rbind, ngonC.list)
  polygonGrob(
     x = ngonXY[, 1] + reps.x,
     y = ngonXY[, 2] + reps.y,
-    default.units = "native",
+    default.units = "npc",
     id.lengths = unlist(vertices), gp = gpar(col = colour, fill = fill)
   )
 }
