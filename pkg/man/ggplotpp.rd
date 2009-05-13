@@ -26,7 +26,7 @@
 
 	d + geom_ngon(aes(colour = carat, angle = x, ar=y),fill=NA,  sides=50)
 	
-	d + geom_ngon(aes(colour = carat, fill = x, size=y),fill=NA,  sides=6)
+	d + geom_ngon(aes(colour = carat, fill = x, size=y), linewidth=2,  sides=6)
 
 	vplayout <- function(x, y) viewport(layout.pos.row=x, layout.pos.col=y)
 
