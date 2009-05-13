@@ -150,7 +150,7 @@ library(ggplotpp)
 
 d + geom_ngon(aes(fill = carat, sides=color), colour="orange",ar=1,  size=5, angle=pi/3)
 
-d + geom_ngon(aes(fill = carat, angle = x, ar=y, size=depth), sides=50)
+d + geom_ngon(aes(colour = carat, angle = x, ar=y),fill=NA,  sides=50)
 
 
 
