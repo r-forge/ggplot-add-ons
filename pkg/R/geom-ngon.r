@@ -28,7 +28,7 @@ GeomNgon <- proto(Geom, {
                       size=size*0.1,
                       sides=sides,
                       angle = angle ,
-                      fill=fill)))
+                      fill=fill, units.def="npc")))
   }
 
   icon <- function(.) {
@@ -43,8 +43,9 @@ GeomNgon <- proto(Geom, {
   examples <- function() {# 
 	library(ggplotpp)
 dsmall <- diamonds[sample(nrow(diamonds), 100), ]
+str(dsmall)
 d <- ggplot(dsmall, aes(carat, price))
-d + geom_ngon(aes(fill=carat, sides=color), size=2)
+d + geom_ngon(aes(fill=color, sides=cut, size=))
   }
 })
 
@@ -52,7 +53,7 @@ d + geom_ngon(aes(fill=carat, sides=color), size=2)
 
 ngonGrob <- function(x, y, sides=5, size = rep(1, length(x)), 
 						angle=rep(pi/2, length(x)), ar = rep(1.5, length(x)), 
-						colour = "grey50", fill = "grey90") {
+						colour = "grey50", fill = "grey90", units.def="native") {
 							
   stopifnot(length(y) == length(x))
   
@@ -88,7 +89,7 @@ ngonXY <- do.call(rbind, ngonC.list)
  polygonGrob(
     x = ngonXY[, 1] + reps.x,
     y = ngonXY[, 2] + reps.y,
-    default.units = "npc",
+    default.units = units.def,
     id.lengths = unlist(vertices), gp = gpar(col = colour, fill = fill)
   )
 }
