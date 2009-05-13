@@ -20,15 +20,18 @@ GeomNgon <- proto(Geom, {
 
   draw_legend <- function(., data, ...) {
     data <- aesdefaults(data, .$default_aes(), list(...))
+	gp <- with(data, gpar(col=colour, fill=fill, lwd=size * .pt))
 
+	
     with(data,
-      ggname(.$my_name(),
+      ggname(.$my_name(),gTree(children = gList(
               ngonGrob(0.5, 0.5,
                       ar=ar,
                       size=size*0.1,
                       sides=sides,
                       angle = angle ,
-                      fill=fill, units.def="npc")))
+                      fill=fill, units.def="npc"), 
+			segmentsGrob(0.5, 0.5, 0.5*cos(angle), 0.5*sin(angle), gp=gpar(colour="grey", linewidth=1))))))
   }
 
   icon <- function(.) {
@@ -45,12 +48,13 @@ GeomNgon <- proto(Geom, {
 dsmall <- diamonds[sample(nrow(diamonds), 100), ]
 str(dsmall)
 d <- ggplot(dsmall, aes(carat, price))
+
+d + geom_ngon(aes(colour = carat, angle = x, ar=1.2*y, fill=carat), size=2,  sides=50)+theme_minimal()
+
 d + geom_ngon(aes(fill=color, sides=cut, size=x))
 d + geom_ngon(aes(fill=color, sides=cut, size=x))
 
 d + geom_ngon(aes(fill = carat, sides=color), colour="orange",ar=1,  size=5, angle=pi/3)
-
-d + geom_ngon(aes(colour = carat, angle = x, ar=1.2*y, fill=carat), size=2,  sides=50)
 
   }
 })
