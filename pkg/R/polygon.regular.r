@@ -75,8 +75,8 @@ xy <- polygon.star(n=sides)
 return(xy)
 } 
 
-
-
-polygon.regular(50)
-polygon.regular(50, st=T)
+# 
+# 
+# polygon.regular(50)
+# polygon.regular(50, st=T)
 
