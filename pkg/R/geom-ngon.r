@@ -22,15 +22,20 @@ GeomNgon <- proto(Geom, {
     data <- aesdefaults(data, .$default_aes(), list(...))
 
     with(data,
+	{
+		if(angle != 0 && sides == 50 && ar == 1)
+		grob.angle <- segmentsGrob(0.5, 0.5, 0.5 + cos(angle)/2, 0.5 + sin(angle)/2, 
+			gp=gpar(colour="grey", linewidth=1))
+		else grob.angle <- NULL
       ggname(.$my_name(),gTree(children = gList(
               ngonGrob(0.5, 0.5,
                       ar=ar,
                       size=1.5*size,
                       sides=sides,
                       angle = angle ,
-                      fill=fill, units.def="npc"), 
-			segmentsGrob(0.5, 0.5, 0.5 + cos(angle)/2, 0.5 + sin(angle)/2, 
-				gp=gpar(colour="grey", linewidth=1))))))
+                      fill=fill, units.def="npc"), grob.angle)))
+	}
+		)
   }
 
   icon <- function(.) {
