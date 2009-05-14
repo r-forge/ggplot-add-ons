@@ -12,7 +12,7 @@ GeomNgon <- proto(Geom, {
 
   required_aes <- c("x", "y")
   default_aes <- function(.) 
-	aes(sides=5, size=1, angle=0, ar=1, colour=NA, fill = "grey50", alpha = 1)
+	aes(sides=5, size=1, angle=0, ar=1, colour="black", fill = "grey50", alpha = 1)
   default_stat <- function(.) StatIdentity
    guide_geom <- function(.) "ngon"
   
@@ -30,7 +30,7 @@ GeomNgon <- proto(Geom, {
       ggname(.$my_name(),gTree(children = gList(
               ngonGrob(0.5, 0.5,
                       ar=ar,
-                      size=1.5*size,
+                      size=size,
                       sides=sides,
                       angle = angle ,
                       fill=fill, units.def="npc"), grob.angle)))
@@ -55,7 +55,8 @@ d <- ggplot(dsmall, aes(carat, price))+theme_minimal()
 
 d + geom_ngon(aes(colour = carat, angle = x, ar=y, fill=carat), size=2,  sides=50)
 
-d + geom_ngon(aes(fill=color, sides=cut, size=x))
+d1 <- d + geom_ngon(aes(size=x, sides=cut), col=NA)
+d1 + geom_point(aes(size=x), col="white")
 
 d + geom_ngon(aes(fill = carat, sides=color), colour="orange",ar=1,  size=5, angle=pi/3)
 
@@ -65,7 +66,7 @@ d + geom_ngon(aes(fill = carat, sides=color), colour="orange",ar=1,  size=5, ang
 
 
 ngonGrob <- function(x, y, sides=5, size = 1, 
-						angle=rep(pi/2, length(x)), ar = rep(1.5, length(x)), 
+						angle=rep(pi/2, length(x)), ar = rep(1, length(x)), 
 						colour = "grey50", fill = "grey90", units.def="npc") {
 							
   stopifnot(length(y) == length(x))
