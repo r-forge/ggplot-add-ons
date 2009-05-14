@@ -46,7 +46,7 @@ polygon.regular <- function (sides=4, star=FALSE) {
 
 n <- sides # lazy to replace
 if (n<3) n <- 3 
-# if (n > 8 & !star) n <- 50
+if (n > 8) n <- 50
 # if (n > 8 & star) n <- 8
 
 if(!star){ # convex polygon
