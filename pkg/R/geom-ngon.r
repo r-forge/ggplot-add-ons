@@ -27,7 +27,7 @@ GeomNgon <- proto(Geom, {
       ggname(.$my_name(),gTree(children = gList(
               ngonGrob(0.5, 0.5,
                       ar=ar,
-                      size=size*0.1,
+                      size=size,
                       sides=sides,
                       angle = angle ,
                       fill=fill, units.def="npc"), 
@@ -38,7 +38,7 @@ GeomNgon <- proto(Geom, {
   icon <- function(.) {
 	ngonGrob(c(1/4, 1/2, 3/4), c(1/4, 1/2, 3/4), 
 		ar=c(1, 1.5, 2), 
-		size=1.2*c(0.1, 0.3, 0.1), 
+		size=c(1, 3, 5), 
 		sides=c(5, 6, 50),
 		angle = c(0, pi/4, pi/3) , 
 		fill=c("#E41A1C",  "#377EB8",  "#4DAF4A"))
@@ -62,18 +62,20 @@ d + geom_ngon(aes(fill = carat, sides=color), colour="orange",ar=1,  size=5, ang
 
 
 
-ngonGrob <- function(x, y, sides=5, size = rep(1, length(x)), 
+ngonGrob <- function(x, y, sides=5, size = 1, 
 						angle=rep(pi/2, length(x)), ar = rep(1.5, length(x)), 
 						colour = "grey50", fill = "grey90", units.def="npc") {
 							
   stopifnot(length(y) == length(x))
   
-res <- max(resolution(x, FALSE), resolution(y, FALSE))
+# res <- max(resolution(x, FALSE), resolution(y, FALSE))
   # dx <- res/diff(range(x))
   # dy <- res/diff(range(y))
   
   n <- length(x)
-
+size <- size / 2 # polygon.regular has radius unity
+if(length(size) < n ) size <- rep(size, length=n) 
+# size <- unit(size, "mm")
 # create a list of n polygons of identical size and orientation
 if(length(sides) == 1 ) {
 	ngonC <- polygon.regular(sides) #x, y, d=1, n=4
@@ -87,7 +89,7 @@ if(length(sides) == 1 ) {
 # aspect ratio factor for constant area
 ngonC.list <- 
 llply(seq_along(ngonC), function(ii) 
-		size[ii] * res * ngonC[[ii]] %*% matrix(c(sqrt(ar[ii]), 0, 0, 1/sqrt(ar[ii])), ncol=2) %*%
+		size[ii] * ngonC[[ii]] %*% matrix(c(sqrt(ar[ii]), 0, 0, 1/sqrt(ar[ii])), ncol=2) %*%
 		matrix(c(cos(angle[ii]), -sin(angle[ii]), sin(angle[ii]), cos(angle[ii])), nrow = 2)
 		)
 
@@ -98,13 +100,26 @@ reps.y <- do.call(c, llply(seq_along(y), function(ii) rep(y[ii], vertices[ii])))
 ngonXY <- do.call(rbind, ngonC.list)
 
  polygonGrob(
-    x = ngonXY[, 1] + reps.x,
-    y = ngonXY[, 2] + reps.y,
+    x = unit(ngonXY[, 1], "mm") + unit(reps.x, units.def),
+    y = unit(ngonXY[, 2], "mm") + unit(reps.y, units.def),
     default.units = units.def,
     id.lengths = unlist(vertices), gp = gpar(col = colour, fill = fill)
   )
 }
 
-# now lives in zzz.r# 
+# now lives in zzz.r# # 
 # geom_ngon <- GeomNgon$build_accessor()
+# # 
+# 
+# grid.draw(
+# icon()
+# )
+# 
+# 
+# dsmall <- diamonds[sample(nrow(diamonds), 100), ]
+# str(dsmall)
+# d <- ggplot(dsmall, aes(carat, price))
+# 
+# d + geom_ngon(aes(fill=color, sides=cut, size=x))
+# 
 # 
