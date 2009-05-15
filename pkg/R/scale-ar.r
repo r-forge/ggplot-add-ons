@@ -23,12 +23,31 @@ ScaleAr <- proto(ScaleContinuous, expr={
   }
   
   examples <- function(.) {
-    (p <- qplot(mpg, cyl, data=mtcars, alpha=cyl))
-    p + scale_alpha("cylinders")
-    p + scale_alpha("number\nof\ncylinders")
-    
-    p + scale_alpha(to = c(0.4, 0.8))
+
+	library(ggplotpp)
+	dsmall <- diamonds[sample(nrow(diamonds), 100), ]
+	str(dsmall)
+	d <- ggplot(dsmall, aes(carat, price))+theme_minimal()
+
+	d + geom_ngon(aes(ar=price), size=2,  sides=50) # int
+	d + geom_ngon(aes(ar=table), size=2,  sides=50) # num
+	d + geom_ngon(aes(ar=cut), size=2,  sides=50) # factor
+
   }
 })
-# 
+ 
+
+ScaleArDiscrete <- proto(ScaleDiscrete, expr={
+  common <- NULL
+  objname <- "ar_discrete"
+  .input <- .output <- "ar"
+  desc <- "AR scale for discrete variables"
+  doc <- FALSE
+
+  max_levels <- function(.) 11
+  output_set <- function(.) seq(1, 5, length=11)
+
+})
+
 # scale_ar <- ScaleAr$build_accessor()
+# scale_ar_discrete <- ScaleArDiscrete$build_accessor()
