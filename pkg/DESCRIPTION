@@ -10,4 +10,4 @@ Depends: R (>= 1.8.0), ggplot2
 License: GPL (>=2)
 URL: http://r-forge.r-project.org/projects/ggplot-add-ons/
 LazyLoad: false
-Collate: theme_bw.r polygon.regular.r star.r geom-ngon.r geom-star.r scale-angle.r scale-ar.r scale-sides.r  zzz.r
+Collate: theme_bw.r polygon.regular.r star.r geom-ngon.r geom-ellipse.r geom-star.r scale-angle.r scale-ar.r scale-sides.r  zzz.r
