@@ -34,6 +34,7 @@ return(xy)
 
 # 
 # 
+# polygon.regular(5)->test
 # polygon.regular(50)->test
 # range(test) # -1 1
 # polygon.regular(50, st=T)

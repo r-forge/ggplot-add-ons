@@ -60,6 +60,10 @@ d1 + geom_point(aes(size=x), col="white")
 
 d + geom_ngon(aes(fill = carat, sides=color), colour="orange",ar=1,  size=5, angle=pi/3)
 
+library(ggplotpp)
+qplot(0, 0)+ 
+geom_point(size=100, col="blue", pch=21, fill="red")+
+geom_ngon(size=100, fill="yellow", alpha=0.5, sides=5, col="blue")
   }
 })
 

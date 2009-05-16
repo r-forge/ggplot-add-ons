@@ -34,10 +34,6 @@ ScaleAr <- proto(ScaleContinuous, expr={
 	d + geom_ngon(aes(ar=cut), size=2,  sides=50) # factor
 	
 	
-	library(ggplotpp)
-	qplot(0, 0)+ 
-	geom_point(size=100, col="blue", pch=21, fill="red")+
-	geom_ngon(size=100, fill="yellow", alpha=0.5, sides=5, col="blue")
 
   }
 })
