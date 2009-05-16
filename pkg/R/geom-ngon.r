@@ -3,7 +3,7 @@ GeomNgon <- proto(Geom, {
   desc <- "Regular polygons"
  
   draw <- function(., data, scales, coordinates, ...) {
-    with(coordinates$transform(data, scales),
+    with(coordinates$munch(data, scales),
       ggname(.$my_name(), 
 	ngonGrob(x, y, sides, size, angle, ar, col=alpha(colour, alpha), fill = alpha(fill, alpha)))
     )
@@ -67,7 +67,7 @@ d + geom_ngon(aes(fill = carat, sides=color), colour="orange",ar=1,  size=5, ang
 
 ngonGrob <- function(x, y, sides=5, size = 1, 
 						angle=rep(pi/2, length(x)), ar = rep(1, length(x)), 
-						colour = "grey50", fill = "grey90", units.def="npc") {
+						colour = "grey50", fill = "grey90", units.def="native") {
 							
   stopifnot(length(y) == length(x))
   
@@ -79,14 +79,8 @@ if(length(size)  < n ) size  <- rep(size,  length.out=n)
 if(length(sides) < n ) sides <- rep(sides, length.out=n) 
 
 # create a list of n polygons of identical size and orientation
-
 # possible optimization here when sides and star are constant
-# if(length(sides) == 1 ) {
-# 	ngonC <- polygon.regular(sides) #x, y, d=1, n=4
-# 	ngonC <- llply(seq_along(x), function(ii) ngonC)
-# 	 } else {
-	# sides <- rep(sides, length.out=length(x))
-	
+
 # general case
 
 # ngonC <- mlply(cbind(sides=sides, star=star), polygon.regular)
