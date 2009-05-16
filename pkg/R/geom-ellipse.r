@@ -25,14 +25,14 @@ GeomEllipse <- proto(Geom, {
 	{
 		if(angle != 0 && ar == 1)
 		grob.angle <- segmentsGrob(0.5, 0.5, 0.5 + cos(angle)/2, 0.5 + sin(angle)/2, 
-			gp=gpar(colour="grey", linewidth=1))
+			gp=gpar(colour="grey50", linewidth=1))
 		else grob.angle <- NULL
-      ggname(.$my_name(),gTree(children = gList(
+      ggname(.$my_name(),gTree(children = gList( grob.angle, 
               ellipseGrob(0.5, 0.5,
                       ar=ar,
                       size=size,
                       angle = angle ,
-                      fill=fill, units.def="npc"), grob.angle)))
+                      fill=fill, units.def="npc"))))
 	}
 		)
   }
@@ -51,9 +51,9 @@ dsmall <- diamonds[sample(nrow(diamonds), 100), ]
 str(dsmall)
 d <- ggplot(dsmall, aes(carat, price)) + theme_minimal()
 
-d + geom_ellipse(aes(colour = carat, angle = x, ar=y, fill=carat), size=2)
+d + geom_ellipse(aes(colour = carat, angle = cut, ar=y, fill=carat), size=2)
 
-d + geom_ellipse(aes(fill = carat), colour="orange",ar=1,  size=5, angle=pi/3)
+d + geom_ellipse(aes(fill = carat, angle = price, ar=cut), color=NA,  size=2)
 
   }
 })

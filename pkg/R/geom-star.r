@@ -25,14 +25,14 @@ GeomStar <- proto(Geom, {
 	{
 		if(angle != 0 && sides == 50 )
 		grob.angle <- segmentsGrob(0.5, 0.5, 0.5 + cos(angle)/2, 0.5 + sin(angle)/2, 
-			gp=gpar(colour="grey", linewidth=1))
+			gp=gpar(colour="grey50", linewidth=1))
 		else grob.angle <- NULL
-      ggname(.$my_name(),gTree(children = gList(
+      ggname(.$my_name(),gTree(children = gList(grob.angle, 
               starGrob(0.5, 0.5,
                       size=size,
                       sides=sides,
                       angle = angle , colour = colour, 
-                      units.def="npc"), grob.angle)))
+                      units.def="npc"))))
 	}
 		)
   }
@@ -56,7 +56,7 @@ d + geom_star(aes(colour = carat, angle = x), size=2,  sides=5)
 d1 <- d + geom_star(aes(size=x, sides=cut))
 d1 + geom_point(aes(size=x), col="white")
 
-d + geom_star(aes(col = carat, sides=color), size=5, angle=pi/3)
+d + geom_star(aes(col = carat, sides=color), size=2, angle=pi/3)
 
   }
 })

@@ -25,15 +25,15 @@ GeomNgon <- proto(Geom, {
 	{
 		if(angle != 0 && sides == 50 && ar == 1)
 		grob.angle <- segmentsGrob(0.5, 0.5, 0.5 + cos(angle)/2, 0.5 + sin(angle)/2, 
-			gp=gpar(colour="grey", linewidth=1))
+			gp=gpar(colour="grey50", linewidth=1))
 		else grob.angle <- NULL
-      ggname(.$my_name(),gTree(children = gList(
+      ggname(.$my_name(),gTree(children = gList(grob.angle, 
               ngonGrob(0.5, 0.5,
                       ar=ar,
                       size=size,
                       sides=sides,
                       angle = angle ,
-                      fill=fill, units.def="npc"), grob.angle)))
+                      fill=fill, units.def="npc"))))
 	}
 		)
   }
