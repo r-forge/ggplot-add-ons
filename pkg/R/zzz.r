@@ -1,5 +1,6 @@
 scale_sides <- ScaleSides$build_accessor()
-scale_sides_continuous <- ScaleSidesContinuous$build_accessor()
+# scale_sides_continuous <- ScaleSidesContinuous$build_accessor() # bug somewhere,  
+# use cut(variable, 7) 
 
 scale_angle <- ScaleAngle$build_accessor()
 scale_angle_discrete <- ScaleAngleDiscrete$build_accessor()
