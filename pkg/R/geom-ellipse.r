@@ -5,7 +5,7 @@ GeomEllipse <- proto(Geom, {
   draw <- function(., data, scales, coordinates, ...) {
     with(coordinates$munch(data, scales),
       ggname(.$my_name(), 
-	ngonGrob(x, y, size, angle, ar, col=alpha(colour, alpha), fill = alpha(fill, alpha)))
+	ellipseGrob(x, y, size, angle, ar, col=alpha(colour, alpha), fill = alpha(fill, alpha)))
     )
   }
 
