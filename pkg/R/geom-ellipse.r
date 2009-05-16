@@ -14,7 +14,7 @@ GeomEllipse <- proto(Geom, {
   default_aes <- function(.) 
 	aes(size=1, angle=0, ar=1, colour="black", fill = "grey50", alpha = 1)
   default_stat <- function(.) StatIdentity
-   guide_geom <- function(.) "ngon"
+   guide_geom <- function(.) "ellipse"
   
   # 
 
