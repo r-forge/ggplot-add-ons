@@ -11,3 +11,4 @@ scale_ar_discrete <- ScaleArDiscrete$build_accessor()
 geom_ngon <- GeomNgon$build_accessor()
 geom_star <- GeomStar$build_accessor()
 geom_ellipse <- GeomEllipse$build_accessor()
+# geom_custom <- GeomCustom$build_accessor() # not sure how to make this one work
