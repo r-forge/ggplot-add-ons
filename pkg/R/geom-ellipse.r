@@ -49,12 +49,9 @@ GeomEllipse <- proto(Geom, {
 library(ggplotpp)
 dsmall <- diamonds[sample(nrow(diamonds), 100), ]
 str(dsmall)
-d <- ggplot(dsmall, aes(carat, price))+theme_minimal()
+d <- ggplot(dsmall, aes(carat, price)) + theme_minimal()
 
 d + geom_ellipse(aes(colour = carat, angle = x, ar=y, fill=carat), size=2)
-
-d1 <- d + geom_ellipse(aes(size=x), col=NA)
-d1 + geom_point(aes(size=x), col="white")
 
 d + geom_ellipse(aes(fill = carat), colour="orange",ar=1,  size=5, angle=pi/3)
 

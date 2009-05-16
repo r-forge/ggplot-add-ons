@@ -32,3 +32,17 @@
 })
 # 
 # scale_angle <- ScaleAngle$build_accessor()
+# scale_angle <- ScaleAngle$build_accessor()
+
+
+ScaleAngleDiscrete <- proto(ScaleDiscrete, expr={
+  common <- NULL
+  objname <- "angle_discrete"
+  .input <- .output <- "angle"
+  desc <- "Angle scale for discrete variables"
+  doc <- FALSE
+
+  max_levels <- function(.) 7
+  output_set <- function(.) seq(0, pi, by=pi/6)
+
+})
