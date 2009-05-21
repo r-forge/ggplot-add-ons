@@ -1,4 +1,4 @@
-
+require(dichromat)
 colorStrip <- # draw a palette or return a strip of colors
 function (colors=1:3, draw = T) 
 {
