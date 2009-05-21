@@ -2,11 +2,11 @@ GeomEllipse <- proto(Geom, {
   objname <- "ellipse"
   desc <- "Ellipses"
  
-  draw <- function(., data, scales, coordinates, units.def="mm", ...) {
+  draw <- function(., data, scales, coordinates, units.size="mm", units.pos="npc", ...) {
     with(coordinates$munch(data, scales),
       ggname(.$my_name(), 
 	ellipseGrob(x, y, size, angle, ar, col=alpha(colour, alpha), fill = alpha(fill, alpha), 
-	units.def=units.def))
+	units.size=units.size, units.pos=units.pos))
     )
   }
 
@@ -33,7 +33,7 @@ GeomEllipse <- proto(Geom, {
                       ar=ar,
                       size=size,
                       angle = angle ,
-                      fill=fill, units.def="mm"))))
+                      fill=fill, units.size="mm", units.pos="npc"))))
 	}
 		)
   }
@@ -53,7 +53,7 @@ str(dsmall)
 d <- ggplot(dsmall, aes(carat, price)) + theme_minimal()
 
 d + geom_ellipse(aes(colour = carat, angle = cut, ar=y, fill=carat), size=2)
-d + geom_ellipse(aes(colour = carat, angle = cut, ar=y, fill=carat), units.def="npc")
+d + geom_ellipse(aes(colour = carat, angle = cut, ar=y, fill=carat), units.size="npc")
 
 d + geom_ellipse(aes(fill = carat, angle = price, ar=cut), color=NA,  size=2)
 
@@ -64,7 +64,7 @@ d + geom_ellipse(aes(fill = carat, angle = price, ar=cut), color=NA,  size=2)
 
 ellipseGrob <- function(x, y, size = 1, 
 						angle=rep(pi/2, length(x)), ar = rep(1, length(x)), 
-						colour = "grey50", fill = "grey90", units.def="mm") {
+						colour = "grey50", fill = "grey90", units.size="mm", units.pos="mm") {
 							
   stopifnot(length(y) == length(x))
   
@@ -91,8 +91,8 @@ reps.y <- do.call(c, llply(seq_along(y), function(ii) rep(y[ii], vertices[ii])))
 ngonXY <- do.call(rbind, ngonC.list)
 
  polygonGrob(
-    x = unit(ngonXY[, 1], units.def) + unit(reps.x, "npc"),
-    y = unit(ngonXY[, 2], units.def) + unit(reps.y, "npc"),
+    x = unit(ngonXY[, 1], units.size) + unit(reps.x, units.pos),
+    y = unit(ngonXY[, 2], units.size) + unit(reps.y, units.pos),
     default.units = units.def,
     id.lengths = unlist(vertices), gp = gpar(col = colour, fill = fill)
   )
