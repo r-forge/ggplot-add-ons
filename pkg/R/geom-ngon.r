@@ -23,7 +23,7 @@ GeomNgon <- proto(Geom, {
 
     with(data,
 	{
-		if(angle != 0 && sides == 50 && ar == 1)
+		if(angle != 0 && fill == "grey50" && ar == 1)
 		grob.angle <- segmentsGrob(0.5, 0.5, 0.5 + cos(angle)/2, 0.5 + sin(angle)/2, 
 			gp=gpar(colour="grey50", linewidth=1))
 		else grob.angle <- NULL

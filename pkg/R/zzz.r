@@ -12,3 +12,8 @@ geom_ngon <- GeomNgon$build_accessor()
 geom_star <- GeomStar$build_accessor()
 geom_ellipse <- GeomEllipse$build_accessor()
 # geom_custom <- GeomCustom$build_accessor() # not sure how to make this one work
+
+
+scale_angle_manual <- ScaleManual$build_accessor(list(variable = "\"angle\""))
+scale_ar_manual <- ScaleManual$build_accessor(list(variable = "\"ar\""))
+scale_sides_manual <- ScaleManual$build_accessor(list(variable = "\"sides\""))

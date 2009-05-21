@@ -1,4 +1,4 @@
-	ScaleAngle <- proto(ScaleContinuous, expr={
+ScaleAngle <- proto(ScaleContinuous, expr={
   doc <- TRUE
   common <- NULL
   
@@ -42,3 +42,4 @@ ScaleAngleDiscrete <- proto(ScaleDiscrete, expr={
   output_set <- function(.) seq(0, pi, by=pi/6)
 
 })
+
