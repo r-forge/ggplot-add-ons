@@ -1,4 +1,4 @@
-require(dichromat)
+
 colorStrip <- # draw a palette or return a strip of colors
 function (colors=1:3, draw = T) 
 {
@@ -130,21 +130,25 @@ ScaleDichromat <- proto(ScaleColour, expr={
   }
   
   examples <- function(.) {
+library(dichromat)
+	library(ggplotpp)
 	 dsamp <- diamonds[sample(nrow(diamonds), 1000), ] 
-	str(dsamp)
-	d <- qplot(carat, price, data=dsamp, colour=cut)
-	
-	d
-	
-	d + scale_colour_brewer() 
-	d + scale_colour_dichromat(type="div") 
-	d + scale_colour_dichromat(type="div", palette=2)
-	d + scale_colour_dichromat(type="div", palette=3)
-	
-	d + scale_colour_dichromat(type="seq")  
-	d + scale_colour_dichromat(type="step") 
-	d + scale_colour_dichromat(type="cat") 
-	
+		str(dsamp)
+		d <- qplot(carat, price, data=dsamp, colour=cut)
+
+		d + scale_colour_dichromat(type="div") 
+		d + scale_colour_dichromat(type="div", palette=2)
+		d + scale_colour_dichromat(type="div", palette=3)
+		d + scale_colour_dichromat(type="div", palette=4)
+		d + scale_colour_dichromat(type="div", palette=5)
+		d + scale_colour_dichromat(type="div", palette=6)
+		d + scale_colour_dichromat(type="div", palette=7)
+		d + scale_colour_dichromat(type="div", palette=8)
+
+		d + scale_colour_dichromat(type="seq")  
+		d + scale_colour_dichromat(type="step") 
+		d + scale_colour_dichromat(type="cat") 
+
 
 
   }

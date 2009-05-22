@@ -24,5 +24,4 @@ scale_length_manual <- ScaleManual$build_accessor(list(variable = "\"length\""))
 
 scale_alpha_manual <- ScaleManual$build_accessor(list(variable = "\"alpha\""))
 
-
 scale_colour_dichromat <- ScaleDichromat$build_accessor(list(variable = "\"colour\""))

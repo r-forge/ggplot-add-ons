@@ -62,19 +62,6 @@ d + geom_ellipse(aes(fill = carat, angle = price, ar=cut), color=NA,  size=2)
 
 
 
-library("ggplot2")
-df1<-data.frame(x=c(1,2),y=c(1,1),var1="a",var2=T)
-df2<-data.frame(x=c(1,2),y=c(2,2),var1="b",var2=T)
-df3<-data.frame(x=c(4,5),y=c(7,8),var1="b",var2=F)
-df<-rbind(df1,df2,df3)
-
-p<-ggplot(data=df,aes(x=x,y=y,alpha=var2))
-p<-p+geom_point()+ scale_manual_alpha()
-p
-
-
-
-
 
 ellipseGrob <- function(x, y, size = 1, 
 						angle=rep(pi/2, length(x)), ar = rep(1, length(x)), 
