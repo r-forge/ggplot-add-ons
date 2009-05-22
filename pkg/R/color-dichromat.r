@@ -78,8 +78,9 @@ dichromat.pal <- function(n=3, name="BrowntoBlue"){
 
 # dichromat.pal()
 # colorStrip(dichromat.pal())
-
-
+dichromat.names <- do.call(c, dichromat.types)
+dichromat.maxcolors <- c(12, 18, 18, 14, 8, 14, 12, 16, 10, 12, 5)
+	
 
 ScaleDichromat <- proto(ScaleColour, expr={
   doc <- TRUE
@@ -96,7 +97,7 @@ ScaleDichromat <- proto(ScaleColour, expr={
 
   pal_name <- function(.) {
     if (is.character(.$palette)) {
-      if (!.$palette %in% do.call(c, dichromat.types)) {
+      if (!.$palette %in% dichromat.names) {
         warning("Unknown palette ", .$palette)
         .$palette <- "BluetoOrangeRed"
       }
@@ -112,7 +113,7 @@ ScaleDichromat <- proto(ScaleColour, expr={
   }
   
   max_levels <- function(.) { # unimplemented
-    # RColorBrewer:::maxcolors[RColorBrewer:::namelist == .$pal_name()]
+    dichromat.maxcolors[dichromat.names == .$pal_name()]
   }
 
   # Documentation -----------------------------------------------
@@ -129,6 +130,24 @@ ScaleDichromat <- proto(ScaleColour, expr={
   }
   
   examples <- function(.) {
+	 dsamp <- diamonds[sample(nrow(diamonds), 1000), ] 
+	str(dsamp)
+	d <- qplot(carat, price, data=dsamp, colour=cut)
+	
+	d
+	
+	d + scale_colour_brewer() 
+	d + scale_colour_dichromat(type="div") 
+	d + scale_colour_dichromat(type="div", palette=2)
+	d + scale_colour_dichromat(type="div", palette=3)
+	
+	d + scale_colour_dichromat(type="seq")  
+	d + scale_colour_dichromat(type="step") 
+	d + scale_colour_dichromat(type="cat") 
+	
+
 
   }
 })
+
+
