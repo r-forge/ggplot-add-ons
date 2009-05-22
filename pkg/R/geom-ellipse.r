@@ -53,53 +53,13 @@ str(dsmall)
 d <- ggplot(dsmall, aes(carat, price)) + theme_minimal()
 
 d + geom_ellipse(aes(colour = carat, angle = cut, ar=y, fill=carat), size=2)
-d + geom_ellipse(aes(colour = carat, angle = cut,  fill=carat), size= 0.05, units.size="npc")
+d + geom_ellipse(aes(colour = carat, angle = cut, ar=y, fill=carat), units.size="npc")
 
 d + geom_ellipse(aes(fill = carat, angle = price, ar=cut), color=NA,  size=2)
 
-)
-
-
-ellipseGrob <- 
-function (x, y, size = 1, angle = rep(pi/2, length(x)), ar = rep(1, 
-    length(x)), colour = "grey50", fill = "grey90", units.size = "mm", 
-    units.pos = "mm") 
-{
-    stopifnot(length(y) == length(x))
-    n <- length(x)
-    size <- size/2
-    if (length(size) < n) 
-        size <- rep(size, length.out = n)
-    ngonC <- polygon.regular(50)
-    ngonC <- llply(seq_along(x), function(ii) ngonC)
-    ngonC.list <- llply(seq_along(ngonC), function(ii) size[ii] * 
-        ngonC[[ii]] %*% matrix(c(sqrt(ar[ii]), 0, 0, 1/sqrt(ar[ii])), 
-            ncol = 2) %*% matrix(c(cos(angle[ii]), -sin(angle[ii]), 
-            sin(angle[ii]), cos(angle[ii])), nrow = 2))
-    vertices <- laply(ngonC.list, nrow)
-    reps.x <- do.call(c, llply(seq_along(x), function(ii) rep(x[ii], 
-        vertices[ii])))
-    reps.y <- do.call(c, llply(seq_along(y), function(ii) rep(y[ii], 
-        vertices[ii])))
-    ngonXY <- do.call(rbind, ngonC.list)
-# print(unit(ngonXY[, 1], units.size))
-    polygonGrob(x = unit(ngonXY[, 1], units.size) + unit(reps.x, 
-        units.pos), y = unit(ngonXY[, 2], units.size) + unit(reps.y, 
-        units.pos), default.units = units.def, id.lengths = unlist(vertices), 
-        gp = gpar(col = colour, fill = fill))
-}
-
-
-p2 <- 
-ellipseGrob(0.5, 0.5, 
-	ar=1, 
-	size=10, 
-	angle = 0 , 
-	fill=alpha("yellow", 0.5), units.pos="native")
-grid.draw(p2)
-
   }
 })
+
 
 
 ellipseGrob <- function(x, y, size = 1, 
