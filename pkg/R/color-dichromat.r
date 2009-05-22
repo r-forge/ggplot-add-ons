@@ -131,7 +131,8 @@ ScaleDichromat <- proto(ScaleColour, expr={
   
   examples <- function(.) {
 library(dichromat)
-	library(ggplotpp)
+library(ggplotpp)
+
 	 dsamp <- diamonds[sample(nrow(diamonds), 1000), ] 
 		str(dsamp)
 		d <- qplot(carat, price, data=dsamp, colour=cut)
@@ -148,6 +149,7 @@ library(dichromat)
 		d + scale_colour_dichromat(type="seq")  
 		d + scale_colour_dichromat(type="step") 
 		d + scale_colour_dichromat(type="cat") 
+		
 
 
 
