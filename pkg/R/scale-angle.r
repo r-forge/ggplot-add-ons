@@ -14,6 +14,7 @@ ScaleAngle <- proto(ScaleContinuous, expr={
   objname <- "angle"
   desc <- "Alpha scale for continuous variable"
   
+
   icon <- function(.) {
     x <- c(0.1, 0.3, 0.5, 0.7, 0.9)
     rectGrob(x, width=0.25,

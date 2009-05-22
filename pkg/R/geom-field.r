@@ -32,14 +32,9 @@ GeomField <- proto(Geom, {
   draw_legend <- function(., data, ...) {
     data <- aesdefaults(data, .$default_aes(), list(...))
 
-    with(data,
-	{
-		
-      ggname(.$my_name(),
-		fieldGrob(0.5, 0.5, angle, length, size,  col=colour, linetype)
-		)
-	}
-		)
+    with(data, ggname(.$my_name(),
+		fieldGrob(0.5, 0.5, angle, length, size,  col=colour, linetype) )
+	)
   }
  
   objname <- "field"
