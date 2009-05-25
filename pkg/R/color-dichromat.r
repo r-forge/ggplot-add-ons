@@ -84,6 +84,8 @@ dichromat.maxcolors <- c(12, 18, 18, 14, 8, 14, 12, 16, 10, 12, 5)
 
 ScaleDichromat <- proto(ScaleColour, expr={
   doc <- TRUE
+	
+try_require("dichromat")
 
   new <- function(., name=NULL, palette=1, type="div", alpha=1, limits=NULL, breaks = NULL, labels=NULL, formatter = identity, variable) {
     .$proto(name=name, palette=palette, type=type, .input=variable, .output=variable, .alpha=alpha, .labels = labels, breaks = breaks, limits= limits, formatter = formatter)

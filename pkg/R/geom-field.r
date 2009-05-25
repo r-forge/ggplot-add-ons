@@ -63,33 +63,25 @@ segmentsGrob(c(0.1, 0.3, 0.5, 0.7), c(0.3, 0.5, 0.1, 0.9),
 	library(ggplotpp)
 	xy <- expand.grid(x=-10:10, y=-10:10)
 	d1 <- data.frame(x=xy$x, y=xy$y)
-	d1$colour <- sample(1:5, length(xy$x), repl=T) 
-
+	d1$colour <- sample(1:5, length(xy$x), repl=T) # check that other aesth. are handled well
+	
 	d1$angle <- 2*pi*rnorm(d1$x) 
-	d1$length <- rnorm(d1$y) 
-
-
-	p <- ggplot(data=d1, map=aes(x=x, y=y, angle=angle, length=length/10, colour=colour))
-
-	p + geom_field()
+	d1$whatever <- rnorm(d1$x) 
+	d1$length <- abs(rnorm(d1$y))/10 
+	
+	
+	p <- ggplot(data=d1, map=aes(x=x, y=y, angle=angle, length=length, colour=colour))
+	
+	p2 <- 
+	p + geom_field() + geom_point()
+	p + geom_field(aes(size=whatever)) 
+	p + geom_field(arrow=arrow(angle = 30, length = unit(2, "mm"),
+	      ends = "both", type = "open"))
+	
 	
   }
   
 })
-
+# 
 # geom_field <- GeomField$build_accessor()
 # 
-# 
-# library(ggplotpp)
-# xy <- expand.grid(x=-10:10, y=-10:10)
-# d1 <- data.frame(x=xy$x, y=xy$y)
-# d1$colour <- sample(1:5, length(xy$x), repl=T) # check that other aesth. are handled well
-# 
-# d1$angle <- 2*pi*rnorm(d1$x) 
-# d1$length <- rnorm(d1$y) 
-# 
-# 
-# p <- ggplot(data=d1, map=aes(x=x, y=y, angle=angle, length=length/10, colour=colour))
-# 
-# p + geom_field() 
-

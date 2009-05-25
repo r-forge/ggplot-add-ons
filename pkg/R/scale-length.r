@@ -2,12 +2,13 @@ ScaleLength <- proto(ScaleContinuous, expr={
   doc <- TRUE
   common <- NULL
   
-  new <- function(., name=NULL, limits=NULL, breaks=NULL, labels=NULL, trans = NULL, to = c(1, 5)) {
-    .super$new(., name=name, limits=limits, breaks=breaks, labels=labels, trans=trans, variable = "ar", to = to)
+  new <- function(., name=NULL, limits=NULL, breaks=NULL, labels=NULL, trans = NULL, to = NULL) {
+    .super$new(., name=name, limits=limits, breaks=breaks, labels=labels, trans=trans, variable = "length", to = to)
   }
   
   map <- function(., values) {
-    rescale(values, .$to, .$input_set())
+    # rescale(values, .$to, .$input_set())
+values
   }
   output_breaks <- function(.) .$map(.$input_breaks())
   
@@ -39,11 +40,11 @@ ScaleLength <- proto(ScaleContinuous, expr={
 })
  
 
-ScaleArDiscrete <- proto(ScaleDiscrete, expr={
+ScaleLengthDiscrete <- proto(ScaleDiscrete, expr={
   common <- NULL
-  objname <- "ar_discrete"
-  .input <- .output <- "ar"
-  desc <- "AR scale for discrete variables"
+  objname <- "length_discrete"
+  .input <- .output <- "length"
+  desc <- "Length scale for discrete variables"
   doc <- FALSE
 
   max_levels <- function(.) 11
@@ -51,5 +52,5 @@ ScaleArDiscrete <- proto(ScaleDiscrete, expr={
 
 })
 
-# scale_ar <- ScaleAr$build_accessor()
+# scale_length <- ScaleLength$build_accessor()
 # scale_ar_discrete <- ScaleArDiscrete$build_accessor()
