@@ -39,13 +39,16 @@
 	d <- diamonds[sample(nrow(diamonds), 100), ]
 	p <- ggplot(d, aes(carat, price, colour=cut)) 
 	str(d)
+	
 
+	
 	p1 <-
 	p + geom_ngon(map=aes(sides=cut, fill=cut), size=2)+opts(title="plot1")
 	p2 <- 
 	p + geom_point()+ geom_field(map=aes(length=carat/10, angle=cut))+opts(title="plot2")
 	p3 <- 
 	p + geom_ellipse(map=aes(ar=depth, angle=table, fill=cut))+opts(title="plot3")
+	require(dichromat)
 	p4 <- 
 	p + geom_star(map=aes(edges=cut, size=carat))+opts(title="plot5")+
 	scale_colour_dichromat(type="div", palette=8)
