@@ -69,7 +69,7 @@ starGrob <- function(x, y, sides=5, size = 1, angle=pi/2,
   stopifnot(length(y) == length(x))
   
 n <- length(x)
-size <- size / 2 # polygon.regular has radius unity
+size <- size #/ 2 # polygon.regular has radius unity
 
 if(length(size)  < n ) size  <- rep(size,  length.out=n) 
 if(length(sides) < n ) sides <- rep(sides, length.out=n) 

@@ -13,7 +13,7 @@ GeomEllipse <- proto(Geom, {
 
   required_aes <- c("x", "y")
   default_aes <- function(.) 
-	aes(size=1, angle=0, ar=1, colour="black", fill = "grey50", alpha = 1)
+	aes(size=1, angle=0, ar=1, colour="black", fill = colour, alpha = 1)
   default_stat <- function(.) StatIdentity
    guide_geom <- function(.) "ellipse"
   

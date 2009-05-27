@@ -1,5 +1,5 @@
 
-polygon.regular <- function (sides=4, star=FALSE) { 
+polygon.regular <- function (sides=4, scale.area=TRUE, star=FALSE) { 
 
 n <- sides # lazy to replace
 if (n<3) n <- 3 
@@ -25,17 +25,18 @@ xx[i] <- xl*costh - yl*sinth
 yy[i] <- xl*sinth + yl*costh } 
 
 xy <- matrix(c(xx,yy), ncol=2)
+ if(scale.area) {
+	Area = n/2 * 1^2 * sin(2*pi / n)
+	xy <- xy / sqrt(Area)
+ }
 
 } else { # starred version
 xy <- polygon.star(n=sides)
+if(scale.area) {
+	# unimplemented
+}
+
 }
 return(xy)
 } 
-
-# 
-# 
-# polygon.regular(5)->test
-# polygon.regular(50)->test
-# range(test) # -1 1
-# polygon.regular(50, st=T)
 

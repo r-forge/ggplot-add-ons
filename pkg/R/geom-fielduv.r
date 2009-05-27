@@ -1,28 +1,28 @@
 
-fieldGrob <- function(x, y, angle, length, size, 
+fielduvGrob <- function(x, y, abscissa, ordinate, size, 
 	colour="black", linetype=1, arrow=NULL){
 		 segmentsGrob(
-		x0=x - 0.5*length*cos(angle), 
-		y0=y - 0.5*length*sin(angle),
-		x1=x+0.5*length*cos(angle), 
-		y1=y+0.5*length*sin(angle), 
+		x0=x - 0.5*abscissa, 
+		y0=y - 0.5*ordinate,
+		x1=x + 0.5*abscissa, 
+		y1=y + 0.5*ordinate, 
 		default.units="native",
 	    gp = gpar(col=colour, lwd=size*ggplot2:::.pt, lty=linetype, lineend = "butt"), 
 	        arrow = arrow)
 }
 
-
-# fieldGrob(0.5, 0.5, pi/6, 0.2,1,  col="blue")->g
-# fieldGrob(0.5, 0.5, pi/2, 0.5,2,  col="red")->g2
+# 
+# fielduvGrob(0.5, 0.5, 0.1, 0.2, 1,  col="blue")->g
+# fielduvGrob(0.5, 0.5, 0.1, 0.05,  1, col="red")->g2
 # pushViewport(vp=viewport(width=1, height=1))
 # grid.draw(g)
 # grid.draw(g2)
 
-GeomField <- proto(Geom, {
+GeomFielduv <- proto(Geom, {
   draw <- function(., data, scales, coordinates, arrow=NULL, ...) {
     if (!coordinates$muncher()) {
       return(with(coordinates$transform(data, scales), 
-        fieldGrob(x, y, angle, length, size, 
+        fielduvGrob(x, y, abscissa, ordinate, size, 
         col=colour, linetype, arrow)
       ))
     }
@@ -33,12 +33,12 @@ GeomField <- proto(Geom, {
     data <- aesdefaults(data, .$default_aes(), list(...))
 
     with(data, ggname(.$my_name(),
-		fieldGrob(0.5, 0.5, angle, length, size,  col=colour, linetype) )
+		fielduvGrob(x=0.5, y=0.5, abscissa, ordinate, size,  col=colour, linetype) )
 	)
   }
  
-  objname <- "field"
-  desc <- "Single line segments"
+  objname <- "fielduv"
+  desc <- "Single line segments parametrised by u and v"
   icon <- function(.) 
 segmentsGrob(c(0.1, 0.3, 0.5, 0.7), c(0.3, 0.5, 0.1, 0.9), 
 	c(0.2, 0.5, 0.7, 0.9), c(0.8, 0.7, 0.4, 0.3))
@@ -54,34 +54,29 @@ segmentsGrob(c(0.1, 0.3, 0.5, 0.7), c(0.3, 0.5, 0.1, 0.9),
   )
 
   default_stat <- function(.) StatIdentity
-  required_aes <- c("x", "y", "angle", "length")
-  default_aes <- function(.) aes(colour="black", angle=pi/4, length=1, size=0.5, linetype=1)
-  guide_geom <- function(.) "field"
+  required_aes <- c("x", "y", "abscissa", "ordinate")
+  default_aes <- function(.) aes(abscissa=0.5, ordinate=0.5, size=1,colour="black",  linetype=1)
+  guide_geom <- function(.) "fielduv"
   
   examples <- function(.) {
     
 	library(ggplotpp)
 	xy <- expand.grid(x=-10:10, y=-10:10)
 	d1 <- data.frame(x=xy$x, y=xy$y)
-	d1$colour <- sample(1:5, length(xy$x), repl=T) 
-	
-	d1$angle <- 2*pi*rnorm(d1$x) 
+
+	d1$u <- rnorm(d1$x) / 10
 	d1$whatever <- rnorm(d1$x) 
-	d1$length <- abs(rnorm(d1$y))/10 
+	d1$v <- abs(rnorm(d1$y))/10
 	
 	
-	p <- ggplot(data=d1, map=aes(x=x, y=y, angle=angle, length=length, colour=colour))
+	p <- ggplot(data=d1, map=aes(x=x, y=y, abscissa=u, ordinate=v))
 	
-	p2 <- 
-	p + geom_field() + geom_point()
-	p + geom_field(aes(size=whatever)) 
-	p + geom_field(arrow=arrow(angle = 30, length = unit(2, "mm"),
-	      ends = "both", type = "open"))
+	p + geom_fielduv(aes(colour=whatever)) + geom_point()
 	
 	
   }
   
 })
 # 
-# geom_field <- GeomField$build_accessor()
+# geom_fielduv <- GeomFielduv$build_accessor()
 # 

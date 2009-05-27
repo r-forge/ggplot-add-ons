@@ -1,7 +1,7 @@
 Package: ggplotpp
 Type: Package
-Title: Add ons for ggplot2
-Version: 0.2
+Title: Add-ons for ggplot2
+Version: 0.3
 Date: 2009-03-06
 Author: Baptiste Auguie
 Maintainer: baptiste <baptiste.auguie@gmail.com>
@@ -10,4 +10,4 @@ Depends: R (>= 1.8.0), ggplot2
 License: GPL (>=2)
 URL: http://r-forge.r-project.org/projects/ggplot-add-ons/
 LazyLoad: false
-Collate: area.r vp.layout.r arrange.r theme_bw.r polygon.regular.r star.r geom-ngon.r geom-field.r geom-custom.r geom-ellipse.r geom-star.r scale-angle.r scale-ar.r scale-length.r scale-sides.r scale-area.r color-dichromat.r zzz.r
+Collate: area.r vp.layout.r arrange.r theme_bw.r polygon.regular.r star.r geom-ngon.r geom-field.r geom-custom.r geom-fielduv.r geom-ellipse.r geom-star.r scale-angle.r scale-ar.r scale-length.r scale-uv.r scale-sides.r scale-area.r color-dichromat.r zzz.r

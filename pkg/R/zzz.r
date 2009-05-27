@@ -1,3 +1,11 @@
+geom_ngon <- GeomNgon$build_accessor()
+geom_star <- GeomStar$build_accessor()
+geom_ellipse <- GeomEllipse$build_accessor()
+geom_field <- GeomField$build_accessor()
+geom_fielduv <- GeomFielduv$build_accessor()
+# geom_custom <- GeomCustom$build_accessor() # not sure how to make this one work
+
+
 scale_sides <- ScaleSides$build_accessor()
 # scale_sides_continuous <- ScaleSidesContinuous$build_accessor() # bug somewhere,  
 # use cut(variable, 7) 
@@ -10,11 +18,8 @@ scale_ar_discrete <- ScaleArDiscrete$build_accessor()
 
 scale_length <- ScaleLength$build_accessor() # default is continuous
 
-geom_ngon <- GeomNgon$build_accessor()
-geom_star <- GeomStar$build_accessor()
-geom_ellipse <- GeomEllipse$build_accessor()
-geom_field <- GeomField$build_accessor()
-# geom_custom <- GeomCustom$build_accessor() # not sure how to make this one work
+scale_abscissa <- ScaleAbscissa$build_accessor()
+scale_ordinate <- ScaleOrdinate$build_accessor()
 
 
 scale_angle_manual <- ScaleManual$build_accessor(list(variable = "\"angle\""))

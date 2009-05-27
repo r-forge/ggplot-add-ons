@@ -16,31 +16,10 @@
 
 \examples{
 
-	dsmall <- diamonds[sample(nrow(diamonds), 100), ]
-	d <- ggplot(dsmall, aes(carat, price))
-	str(dsmall)
+
 	library(ggplotpp)
 
-
-	d + geom_ngon(aes(fill = carat, sides=color), colour="orange",ar=1,  size=5, angle=pi/3)
-
-	d + geom_ngon(aes(colour = carat, angle = x, ar=y),fill=NA,  sides=50)
-	
-	d + geom_ngon(aes(colour = carat, fill = x, size=y), linewidth=2,  sides=6)
-
-	vplayout <- function(x, y) viewport(layout.pos.row=x, layout.pos.col=y)
-
-	drawAll <- function(a,b,c,d, e, f) {
-	   grid.newpage()
-	   pushViewport(viewport(layout=grid.layout(3,2) ) )
-	       print(a, vp=vplayout(1,1))
-	       print(b, vp=vplayout(1,2))
-	       print(c, vp=vplayout(2,1))
-	       print(d, vp=vplayout(2,2))
-	       print(e, vp=vplayout(3,1))
-	       print(f, vp=vplayout(3,2))
-	}
-
+# themes
 	mdf <- data.frame(x <- seq(0, 10), y=rnorm(x), 
 		f=factor(rep(letters[1:2], each=3, length=length(x))))
 
@@ -53,7 +32,25 @@
 	e <- a + theme_flashy() + opts(title="theme_flashy")
 	f <- a + theme_bb() + opts(title="theme_dark")
 
-	drawAll(a,b,c,d, e, f)
+	arrange(a,b,c,d, e, f)
+	
+# geoms and scales
+	
+	d <- diamonds[sample(nrow(diamonds), 100), ]
+	p <- ggplot(d, aes(carat, price, colour=cut)) 
+	str(d)
+
+	p1 <-
+	p + geom_ngon(map=aes(sides=cut, fill=cut), size=2)+opts(title="plot1")
+	p2 <- 
+	p + geom_point()+ geom_field(map=aes(length=carat/10, angle=cut))+opts(title="plot2")
+	p3 <- 
+	p + geom_ellipse(map=aes(ar=depth, angle=table, fill=cut))+opts(title="plot3")
+	p4 <- 
+	p + geom_star(map=aes(edges=cut, size=carat))+opts(title="plot5")+
+	scale_colour_dichromat(type="div", palette=8)
+
+	arrange(p1, p2, p3, p4)
 
 }
 

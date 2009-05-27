@@ -12,7 +12,7 @@ GeomNgon <- proto(Geom, {
 
   required_aes <- c("x", "y")
   default_aes <- function(.) 
-	aes(sides=5, size=1, angle=0, ar=1, colour="black", fill = "grey50", alpha = 1)
+	aes(sides=5, size=1, angle=0, ar=1, colour="grey50", fill = NA, alpha = 1)
   default_stat <- function(.) StatIdentity
    guide_geom <- function(.) "ngon"
   
@@ -23,7 +23,7 @@ GeomNgon <- proto(Geom, {
 
     with(data,
 	{
-		if(angle != 0 && fill == "grey50" && ar == 1)
+		if(angle != 0 && is.na(fill) && ar == 1)
 		grob.angle <- segmentsGrob(0.5, 0.5, 0.5 + cos(angle)/2, 0.5 + sin(angle)/2, 
 			gp=gpar(colour="grey50", linewidth=1))
 		else grob.angle <- NULL
@@ -53,17 +53,24 @@ dsmall <- diamonds[sample(nrow(diamonds), 100), ]
 str(dsmall)
 d <- ggplot(dsmall, aes(carat, price))+theme_minimal()
 
-d + geom_ngon(aes(colour = carat, angle = x, ar=y, fill=carat), size=2,  sides=50)
+d + geom_ngon(aes(colour = carat, angle = x, ar=y, fill=carat),  sides=50)
 
-d1 <- d + geom_ngon(aes(size=x, sides=cut), col=NA)
-d1 + geom_point(aes(size=x), col="white")
+d + geom_ngon(aes(fill = depth, sides=cut, size=color),ar=1)
 
-d + geom_ngon(aes(fill = carat, sides=color), colour="orange",ar=1,  size=5, angle=pi/3)
 
 library(ggplotpp)
-qplot(0, 0)+ 
-geom_point(size=100, col="blue", pch=21, fill="red")+
-geom_ngon(size=100, fill="yellow", alpha=0.5, sides=5, col="blue")
+ggplot(data.frame(x=0, y=0), mapping = aes(x, y ))+ 
+geom_point(size=100, col="red", pch=1)+
+geom_point(size=100, col="red", pch=0)+
+geom_point(size=100, col="red", pch=3)+
+geom_ngon(size=100, fill="yellow", alpha=0.2, sides=50, col="green")+
+geom_ngon(size=100, fill="yellow", alpha=0.2, sides=3, col="blue")+
+geom_ngon(size=100, fill="yellow", alpha=0.2, sides=4, col="blue")+
+geom_ngon(size=100, fill="yellow", alpha=0.2, sides=5, col="blue")+
+geom_ngon(size=100, fill="yellow", alpha=0.2, sides=6, col="blue")+
+geom_ngon(size=100, fill="yellow", alpha=0.2, sides=7, col="blue")+
+geom_ngon(size=100, fill="yellow", alpha=0.2, sides=8, col="blue")
+
   }
 })
 
@@ -76,7 +83,7 @@ ngonGrob <- function(x, y, sides=5, size = 1,
   stopifnot(length(y) == length(x))
   
 n <- length(x)
-size <- size / 2 # polygon.regular has radius unity
+  
 
 if(length(size)  < n ) size  <- rep(size,  length.out=n) 
 # if(length(star)  < n ) star  <- rep(star,  length.out=n) 
@@ -86,9 +93,11 @@ if(length(sides) < n ) sides <- rep(sides, length.out=n)
 # possible optimization here when sides and star are constant
 
 # general case
-
+# sides <- c(3:8, 50)
 # ngonC <- mlply(cbind(sides=sides, star=star), polygon.regular)
+
 ngonC <- llply(sides, polygon.regular)
+# polygon.regular has area unity
 
 
 # stretch the polygons, then rotate them
