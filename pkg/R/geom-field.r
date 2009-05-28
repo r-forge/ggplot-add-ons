@@ -85,3 +85,17 @@ segmentsGrob(c(0.1, 0.3, 0.5, 0.7), c(0.3, 0.5, 0.1, 0.9),
 # 
 # geom_field <- GeomField$build_accessor()
 # 
+
+# ls(package:ggplotpp)
+# # themes
+#  "theme_dark"	"theme_flashy"	"theme_gray2"	"theme_minimal"	"theme_talk"	"theme_bb"	"theme_bw2"      
+# # utility functions
+#  "arrange"	"vp.layout"	"polygon.regular"	"star"   
+#  "chooseCol"	"colorStrip"	"createCol"          
+# # geoms    
+#  "geom_ellipse"	"geom_field"	"geom_fielduv"	"geom_ngon"	"geom_star"        
+# # scales                    
+#  "scale_abscissa"      "scale_alpha_manual" "scale_angle"     "scale_angle_discrete"   "scale_angle_manual"    
+#  "scale_ar"            "scale_ar_discrete"  "scale_ar_manual" "scale_colour_dichromat" "scale_fill_dichromat"   "scale_length"          
+#  "scale_length_manual" "scale_ordinate"     "scale_sides"     "scale_sides_manual"       
+        

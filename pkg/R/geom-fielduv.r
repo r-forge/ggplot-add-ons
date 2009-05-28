@@ -1,6 +1,8 @@
 
 fielduvGrob <- function(x, y, abscissa, ordinate, size, 
-	colour="black", linetype=1, arrow=NULL){
+	colour="black", linetype=1, arrow=NULL, center=FALSE){
+		if(center) {
+			return(
 		 segmentsGrob(
 		x0=x - 0.5*abscissa, 
 		y0=y - 0.5*ordinate,
@@ -8,7 +10,17 @@ fielduvGrob <- function(x, y, abscissa, ordinate, size,
 		y1=y + 0.5*ordinate, 
 		default.units="native",
 	    gp = gpar(col=colour, lwd=size*ggplot2:::.pt, lty=linetype, lineend = "butt"), 
-	        arrow = arrow)
+	        arrow = arrow))} else {
+				return(
+			 segmentsGrob(
+			x0=x , 
+			y0=y ,
+			x1=x + abscissa, 
+			y1=y + ordinate, 
+			default.units="native",
+		    gp = gpar(col=colour, lwd=size*ggplot2:::.pt, lty=linetype, lineend = "butt"), 
+		        arrow = arrow))}
+	
 }
 
 # 
@@ -19,11 +31,11 @@ fielduvGrob <- function(x, y, abscissa, ordinate, size,
 # grid.draw(g2)
 
 GeomFielduv <- proto(Geom, {
-  draw <- function(., data, scales, coordinates, arrow=NULL, ...) {
+  draw <- function(., data, scales, coordinates, arrow=NULL, center=FALSE, ...) {
     if (!coordinates$muncher()) {
       return(with(coordinates$transform(data, scales), 
         fielduvGrob(x, y, abscissa, ordinate, size, 
-        col=colour, linetype, arrow)
+        col=colour, linetype, arrow, center)
       ))
     }
     
@@ -33,7 +45,7 @@ GeomFielduv <- proto(Geom, {
     data <- aesdefaults(data, .$default_aes(), list(...))
 
     with(data, ggname(.$my_name(),
-		fielduvGrob(x=0.5, y=0.5, abscissa, ordinate, size,  col=colour, linetype) )
+		fielduvGrob(x=0.5, y=0.5, abscissa, ordinate, size,  col=colour, linetype, center=TRUE) )
 	)
   }
  
