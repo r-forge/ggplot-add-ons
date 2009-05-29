@@ -85,7 +85,6 @@ segmentsGrob(c(0.1, 0.3, 0.5, 0.7), c(0.3, 0.5, 0.1, 0.9),
 	
 	p + geom_fielduv(aes(colour=whatever)) + geom_point()
 	
-	
   }
   
 })
