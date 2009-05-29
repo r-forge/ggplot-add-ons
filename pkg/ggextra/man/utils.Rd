@@ -61,9 +61,11 @@ star(5)
 	p5 <- 
 	p + geom_ellipse(ar=2, colour="red")+opts(title="plot5")
 
+\dontrun{
 	arrange(p1, p2, p3, p4, p5)
 
 	arrange(p1, p2, p3, p4, p5, as.table=T)
+}
 
 }
 
