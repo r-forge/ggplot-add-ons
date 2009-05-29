@@ -1,5 +1,5 @@
 colorStrip <- # draw a palette or return a strip of colors
-function (colors=1:3, draw = T) 
+function (colors=1:3, draw = TRUE) 
 {
     x <- seq(0, 1 - 1/length(colors), length = length(colors))
     y <- rep(0.5, length(colors))

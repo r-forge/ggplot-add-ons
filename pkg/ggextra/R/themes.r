@@ -137,36 +137,37 @@ theme_talk <- function(base_size = 14) {
     plot.margin =       unit(c(1, 1, 0.5, 0.5), "lines")
   ), class = "options")
 }
+
 theme_flashy <- function(base_size = 12) {
   structure(list(
-    axis.line =         theme_blank(),
-    axis.text.x = theme_text(colour = "#CCFF33"),
-    axis.text.y = theme_text(colour = "#CCFF33", hjust = 1),
-    axis.title.x = theme_text(colour = "#CCFF33", face = "bold"),
-    axis.title.y = theme_text(colour = "#CCFF33", face = "bold", angle = 90) , 
-    axis.ticks =        theme_segment(colour = "grey50"),
+    axis.line =   theme_segment("#FFC30F"),
+    axis.text.x = theme_text(colour = "#FFC30F"),
+    axis.text.y = theme_text(colour = "#FFC30F", hjust = 1),
+    axis.title.x = theme_text(colour = "#FFC30F", face = "bold"),
+    axis.title.y = theme_text(colour = "#FFC30F", face = "bold", angle = 90) , 
+    axis.ticks =        theme_segment(colour = "#FFC30F"),
     axis.ticks.length = unit(0.15, "cm"),
-    axis.ticks.margin = unit(0.1, "cm"),
+    axis.ticks.margin = unit(0.2, "cm"),
 
-    legend.background = theme_rect(colour="white"), 
-    legend.key =        theme_rect(fill = "grey95", colour = "white"),
+    legend.background = theme_rect(colour="#CCFFE6"), 
+    legend.key =        theme_rect(fill = "#CCFFE6", colour ="#FFC30F"),
     legend.key.size =   unit(1.2, "lines"),
     legend.text =       theme_text(size = base_size * 0.8),
     legend.title =      theme_text(size = base_size * 0.8, face = "bold", hjust = 0),
     legend.position =   "right",
 
-    panel.background = theme_rect(fill = "#003DF5"),
+    panel.background = theme_rect(fill = "#CCFFE6", colour=NA),
     panel.border =      theme_blank(), 
     panel.grid.major =  theme_line(colour = "white"),
-    panel.grid.minor =  theme_line(colour = "grey95", size = 0.25),
+    panel.grid.minor =  theme_line(colour = "white", size = 0.25),
     panel.margin =      unit(0.25, "lines"),
 
-    strip.background =  theme_rect(fill = "grey80", colour = NA), 
+    strip.background =  theme_rect(fill = "#FFC30F", colour = NA), 
     strip.label =       function(variable, value) value, 
     strip.text.x =      theme_text(size = base_size * 0.8),
     strip.text.y =      theme_text(size = base_size * 0.8, angle = -90),
 
-    plot.background = theme_rect(fill = "#3366FF"),
+    plot.background = theme_rect(fill = "white", colour=NA),
     plot.title =        theme_text(size = base_size * 1.2),
     plot.margin =       unit(c(1, 1, 0.5, 0.5), "lines")
   ), class = "options")
