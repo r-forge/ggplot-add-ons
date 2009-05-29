@@ -6,9 +6,9 @@
 \author{Hadley Wickham <h.wickham@gmail.com>, modified by baptiste Auguie}
 
 \description{
-Produce a theme with white background and black gridlines.
+Produce a theme for use in ggplot2.
 }
-\usage{theme_bw(base_size = 12)}
+\usage{theme_xx(base_size = 12)}
 \arguments{
 \item{base_size}{}
 }
