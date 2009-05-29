@@ -17,6 +17,8 @@ Produce a theme for use in ggplot2.
 
 \examples{
 
+library(ggextra)
+
 	mdf <- data.frame(x <- seq(0, 10), y=rnorm(x), 
 		f=factor(rep(letters[1:2], each=3, length=length(x))))
 
@@ -32,5 +34,6 @@ Produce a theme for use in ggplot2.
 \dontrun{
 	arrange(a,b,c,d,e,f)
 }
+
 }
 

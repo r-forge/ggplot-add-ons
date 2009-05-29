@@ -32,8 +32,9 @@
 	e <- a + theme_flashy() + opts(title="theme_flashy")
 	f <- a + theme_bb() + opts(title="theme_dark")
 
+\dontrun{
 	arrange(a,b,c,d, e, f)
-	
+}	
 # geoms and scales
 	
 	d <- diamonds[sample(nrow(diamonds), 100), ]
@@ -52,8 +53,8 @@
 	p4 <- 
 	p + geom_star(map=aes(edges=cut, size=carat))+opts(title="plot5")+
 	scale_colour_dichromat(type="div", palette=8)
-
+\dontrun{
 	arrange(p1, p2, p3, p4)
-
+}
 }
 
